@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+
+{%block content%}
+    <form method="GET">
+        <label for="search-field">Enter Username or Email to search</label>
+        <input type="text" id="search-field" name="search">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if users %}
+    <table border="2">
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>No. of snippets</th>
+        {% for user in users %}
+        <tr>
+            <td><a href="{% url 'profile' user.id%}">{{user.username}}</a></td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.snippets.count}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+    {%endif%}
+{%endblock%}

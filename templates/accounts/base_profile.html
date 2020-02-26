@@ -1,0 +1,47 @@
+{% load static %}
+<script src="{% static 'js/jquery-3.4.1.js'%}"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+    body{padding-top:20px;}
+</style>
+<div class="container">
+    <div class="row">
+		<div class="col-md-4">
+            <div class="well well-sm">
+                <div class="media">
+                    <a class="thumbnail pull-left" href="#">
+                        <img class="media-object" src="http://critterapp.pagodabox.com/img/user.jpg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{user.first_name}} {{user.last_name}}</h4>
+                        <h4 class="media-heading">{{user.username}}</h4>
+                        <h4 class="media-heading">{{user.email}}</h4>
+                		<p><span class="label label-info">888 photos</span> <span class="label label-warning">150 followers</span></p>
+                        <p>
+                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
+                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
+                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Unfollow</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <p>Latest Snippets by {{user}}</p>
+            <table border="2">
+                <th>Name</th>
+                <th>language</th>
+                <th>description</th>
+                {% for snippet in snippets %}
+                <tr>
+                    <td><a href="{% url 'snippets:snippet-detail' snippet.id%}">{{snippet.name}}</a></td>
+                    <td>{{snippet.language}}</td>
+                    <td>{{snippet.description}}</td>
+                </tr>
+                {%endfor%}
+            </table>
+            <br>
+            <a href="{% url 'snippets:list' user.id %}">View All</a>
+        </div>
+	</div>
+</div>

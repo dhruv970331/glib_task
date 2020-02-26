@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load edit_tags %}
+{% block title %}Create Snippet{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'codemirror/lib/codemirror.css'%}">
+        <script src="{% static 'codemirror/lib/codemirror.js'%}"></script>
+        <script src="{% static 'codemirror/addon/mode/loadmode.js'%}"></script>
+        <script src="{% static 'codemirror/mode/meta.js'%}"></script>
+        <script src="{% static 'codemirror/mode/python/python.js'%}"></script>
+        <script>
+            var mode_url = "{% static 'codemirror/mode/' %}";
+            // var config = {
+            //     mode:"{{snippet.language}}",
+            //     lineNumbers:true,
+
+            // }
+            var mode = "{{snippet.language}}"
+            var indent_mode = "{{ snippet.indent_mode }}"
+            var indent_value = "{{ snippet.indent_value }}"
+            var mode = "{{snippet.language}}"
+            console.log(indent_value)
+        </script>
+{% endblock %}
+{% block content %}
+  <h2>Login</h2>
+  <form method="post" id="create-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" id="submit" disabled>Create</button>
+  </form>
+  <script src="{% static 'js/snippet_edit.js' %}"></script>
+  <script src="{% static 'js/snippet_common.js' %}"></script>
+{% endblock %}

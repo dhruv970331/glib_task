@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}View Snippet{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'codemirror/lib/codemirror.css'%}">
+        <script src="{% static 'codemirror/lib/codemirror.js'%}"></script>
+        <script src="{% static 'codemirror/addon/mode/loadmode.js'%}"></script>
+        <script src="{% static 'codemirror/mode/meta.js'%}"></script>
+        <script src="{% static 'codemirror/mode/python/python.js'%}"></script>
+        <script>
+            mode_url = "{% static 'codemirror/mode/' %}";
+            mode = "{{snippet.language}}"
+        </script>
+{% endblock %}
+{% block content %}
+    {% csrf_token %}
+    {%if snippet.description%}
+        <p>{{snippet.description}}</p>
+    {%endif%}
+    <h4>{{snippet.name}}</h4>
+    <textarea id="id_code">{{snippet.code}}</textarea>
+    {%if snippet.owner == request.user %}
+    <a href="{% url 'snippets:edit' snippet.id %}">Edit</a>
+    {%endif%}
+  <script src="{% static 'js/snippet_detail.js' %}"></script>
+{% endblock %}

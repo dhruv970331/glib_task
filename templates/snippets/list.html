@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content%}
+<table border="2">
+    <th>Name</th>
+    <th>language</th>
+    <th>description</th>
+    {% for snippet in snippets %}
+    <tr>
+        <td><a href="{% url 'snippets:snippet-detail' snippet.id%}">{{snippet.name}}</a></td>
+        <td>{{snippet.language}}</td>
+        <td>{{snippet.description}}</td>
+    </tr>
+    {%endfor%}
+</table>
+{%endblock%}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<table border="2">
+    <tr>
+        <td>
+            <a href="{% url 'profile' user.id%}">View your profile</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{% url 'snippets:create' %}">Create new snippet</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{% url 'snippets:list' user.id %}">View your snippets</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{% url 'search' %}">Search Users</a>
+        </td>
+    </tr>
+</table>
+{% endblock %}

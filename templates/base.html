@@ -1,0 +1,27 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}GLIB Task{% endblock %}</title>
+    <script src="{% static 'js/jquery-3.4.1.js'%}"></script>
+    {% block extra_head %}
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+      <h1>Gisthub</h1>
+      {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">logout</a>
+      {% else %}
+        <a href="{% url 'login' %}">login</a> / <a href="{% url 'signup' %}">signup</a>
+      {% endif %}
+      <a href="{% url 'main' %}">Main Page</a>
+      <hr>
+    </header>
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+  </body>
+</html>

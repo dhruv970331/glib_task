@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="user-details">
+    <span>
+        <label>Username</label>
+        <p>Username: {{user.username}}</p>Username: 
+    </span>
+</div>    
+{{snippets}}
+{% endblock %}
