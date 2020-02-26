@@ -57,7 +57,9 @@ class UpdateProfileView(LoginRequiredMixin,views.generic.UpdateView):
     model = User
     fields = ['first_name',"last_name","email"]
     template_name = "accounts/update.html"
-    success_url = "main"
+    def get_success_url(self):
+        return reverse("main")
+        
     def get_object(self, *args, **kwargs):
         user = super(UpdateProfileView, self).get_object(*args, **kwargs)
         if user != self.request.user:
