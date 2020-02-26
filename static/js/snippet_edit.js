@@ -7,7 +7,6 @@
     if (code_text) {
         editor.setValue(code_text)
     }
-    console.log(config,editor)
     CodeMirror.autoLoadMode(editor, config.mode);
     $("#id_language").change(function (e) {
         console.log("this", e.target.value, mode_url)
@@ -37,9 +36,11 @@ function get_config(){
     if (indent_mode == "tabs") {
         config.indentWithTabs=true
         config.tabSize=indent_value
+        config.indentUnit = indent_value
         return config
     }
     config.indentWithTabs=false
     config.indentUnit = indent_value
+    config.tabSize=indent_value
     return config
 }

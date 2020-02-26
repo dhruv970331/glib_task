@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.views import View
-from django.shortcuts import render
+from django.shortcuts import render,redirect,reverse
 
 class HomeView(View):
     def get(self,request):
+        if request.user.is_authenticated:
+            return redirect(reverse("main"))
         return render(request,"home.html")
 
 urlpatterns = [

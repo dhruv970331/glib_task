@@ -1,10 +1,15 @@
+{% extends 'base.html'%}
 {% load static %}
+{% block extra_head %}
 <script src="{% static 'js/jquery-3.4.1.js'%}"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+{%endblock%}
+{%block content%}
 <style>
     body{padding-top:20px;}
+    body header{padding-left: 20px;}
 </style>
 <div class="container">
     <div class="row">
@@ -38,6 +43,8 @@
                     <td>{{snippet.language}}</td>
                     <td>{{snippet.description}}</td>
                 </tr>
+                {%empty%}
+                <tr><td colspan="3">No snippets to show</td></tr>
                 {%endfor%}
             </table>
             <br>
@@ -45,3 +52,4 @@
         </div>
 	</div>
 </div>
+{%endblock%}

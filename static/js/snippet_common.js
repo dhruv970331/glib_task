@@ -1,6 +1,5 @@
 $(document).ready(function(){
     $("#id_indent_mode").change(function (e) {
-        console.log(e.target.value)
         indent_mode = e.target.value
         indent_value = $("#id_indent_value").val()
         if (indent_mode == "tabs") {
