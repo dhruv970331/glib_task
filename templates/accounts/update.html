@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load edit_tags %}
+{% block title %}Update profile{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'codemirror/lib/codemirror.css'%}">
+{% endblock %}
+{% block content %}
+  <h2>Update profile</h2>
+  <form method="post" id="create-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" id="submit">Create</button>
+  </form>
+{% endblock %}

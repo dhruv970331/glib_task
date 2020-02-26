@@ -1,6 +1,7 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,reverse
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django import views
 from .forms import SignUpForm
@@ -50,3 +51,15 @@ class SearchView(LoginRequiredMixin,views.View):
         if slug:
             users = User.objects.filter(Q(username__icontains=slug)|Q(email__icontains=slug))
         return render(request,"accounts/search.html",{"users":users})
+
+class UpdateProfileView(LoginRequiredMixin,views.generic.UpdateView):
+    context_object_name = "user"
+    model = User
+    fields = ['first_name',"last_name","email"]
+    template_name = "accounts/update.html"
+    success_url = "main"
+    def get_object(self, *args, **kwargs):
+        user = super(UpdateProfileView, self).get_object(*args, **kwargs)
+        if user != self.request.user:
+            raise PermissionDenied() #or Http404
+        return user
